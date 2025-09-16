@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieTube - Search Results</title>
+</head>
+<body>
+    <!-- Header / Navigation -->
+<header>
+<div class="wrap">
+<div class="topbar">
+<a class="brand" href="#">
+<span class="logo"><span>🎬</span></span>
+<span>MovieTube</span>
+</a>
+<nav>
+<a href="#">Home</a>
+<a href="#">Genres</a>
+<a href="#">Top Rated</a>
+<a href="#">Watchlist</a>
+</nav>
+</div>
+
+<!-- Search Bar -->
+<form class="searchbar" role="search">
+<input class="input" id="q" name="q" type="search" placeholder="Search titles, people, or keywords…" />
+<button class="btn" type="submit">Search</button>
+</form>
+
+<!-- Filters Row -->
+<div class="filters">
+<label class="chip"><input type="checkbox" name="genre" value="Action"> Action</label>
+<label class="chip"><input type="checkbox" name="genre" value="Drama"> Drama</label>
+<label class="chip"><input type="checkbox" name="genre" value="Comedy"> Comedy</label>
+<label class="chip"><input type="checkbox" name="genre" value="Sci‑Fi"> Sci‑Fi</label>
+<label class="chip"><input type="checkbox" name="genre" value="Animation"> Animation</label>
+
+
+<div class="sort">
+<span>Sort by</span>
+<select id="sort">
+<option value="relevance">Relevance</option>
+<option value="rating">Rating</option>
+<option value="year">Year</option>
+<option value="title">Title (A–Z)</option>
+</select>
+</div>
+</div>
+</div>
+</header>
+
+<!-- Results Meta -->
+<main class="wrap">
+<div class="meta">
+<div><strong id="count">0</strong> results</div>
+<div>Query: <strong id="query-label">All</strong></div>
+</div>
+
+<!-- Results Grid -->
+<section class="grid" id="results">
+<!-- Movie cards will go here -->
+</section>
+
+<!-- Pagination -->
+<nav class="pagination">
+<button class="page-btn active" type="button">1</button>
+<button class="page-btn" type="button">2</button>
+<button class="page-btn" type="button">3</button>
+</nav>
+</main>
+    
+</body>
+</html>
