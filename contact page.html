@@ -1,64 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact | MovieTube</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviTube - Contact</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-dark: #273043;
+            --primary-purple: #9197AE;
+            --light-green: #EFF6EE;
+            --accent-red: #F02D3A;
+            --dark-red: #DD0426;
+        }
+        body { background-color: var(--light-green); color: var(--primary-dark); }
+        .navbar { 
+            background-color: var(--primary-dark) !important;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .navbar-brand { color: var(--light-green) !important; font-weight: bold; font-size: 1.8rem; }
+        .navbar-nav .nav-link { color: var(--light-green) !important; }
+        .navbar-nav .nav-link:hover { color: var(--accent-red) !important; }
+        .btn-primary { background-color: var(--accent-red); border-color: var(--dark-red); }
+        .btn-primary:hover { background-color: var(--dark-red); }
+        .card { border: none; box-shadow: 0 4px 6px rgba(39,48,67,0.1); }
+        .section-title { color: var(--primary-dark); border-bottom: 2px solid var(--accent-red); padding-bottom: 10px; margin-bottom: 2rem; }
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="Homepage.html"><i class="bi bi-film"></i> MoviTube</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="Genres Page.html">Genres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Watchlist Page.html">Watchlist</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Contact Page.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="About Us Page.html">About Us</a></li>
+                </ul>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">🎬 MovieTube</a>
-      <div class="d-flex">
-        <a class="nav-link text-white" href="#">Home</a>
-        <a class="nav-link text-white" href="#">Movies</a>
-        <a class="nav-link text-white" href="#">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Contact Section -->
-  <div class="container mt-5">
-    <h2 class="text-center text-primary mb-4">Get in Touch</h2>
-    <p class="fs-5 text-secondary text-center">
-      Have questions, feedback, or just want to say hi? Drop us a message and we’ll get back to you faster than a blockbuster sequel.
-    </p>
-
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card shadow">
-          <div class="card-body">
-            <form>
-              <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Your name">
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              </div>
-              <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" rows="4" placeholder="Your message..."></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-          </div>
+                <form class="d-flex" action="Search Results Page.html" method="GET">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Search Movies...">
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
         </div>
-      </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="section-title text-center">Contact Us</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-muted">Have questions or feedback? Fill out the form below and we'll get back to you shortly.</p>
+
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Your name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Your message..." required></textarea>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                                <div id="formFeedback" class="ms-3 text-success" role="status" aria-live="polite" style="display:none;">Message sent — thanks!</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="bg-secondary text-white text-center py-3 mt-5">
-    &copy; 2025 MovieTube. All rights reserved.
-  </footer>
+    <footer class="py-4 mt-5">
+        <div class="container text-center">
+            <h5><i class="bi bi-film"></i> MoviTube</h5>
+            <p class="mb-0">&copy; 2025 MoviTube. All rights reserved.</p>
+        </div>
+    </footer>
 
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simple client-side feedback — in a real app you'd POST to a server
+            const feedback = document.getElementById('formFeedback');
+            feedback.style.display = '';
+            setTimeout(() => { feedback.style.display = 'none'; document.getElementById('contactForm').reset(); }, 2500);
+        });
+    </script>
 </body>
 </html>

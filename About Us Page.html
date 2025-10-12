@@ -3,23 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Our Team</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <title>MoviTube • About Our Team</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 
   <style>
-    body {
-      background-color: #0E151B;
-      color: #DAD6D2;
+    :root {
+      --primary-dark: #273043;
+      --primary-purple: #9197AE;
+      --light-green: #EFF6EE;
+      --accent-red: #F02D3A;
+      --dark-red: #DD0426;
     }
-
+    
+    body {
+      background-color: var(--light-green);
+      color: var(--primary-dark);
+    }
     
     .card {
-      background-color: #1A242C;
-      border: 1px solid #222;
+      background-color: white;
+      border: none;
       border-radius: 10px;
-      color: #DAD6D2;
+      box-shadow: 0 4px 6px rgba(39,48,67,0.1);
+      color: var(--primary-dark);
     }
-
 
     .card-img-top {
       height: 250px;
@@ -30,86 +40,99 @@
     }
 
     .card-title {
-      color: #A81E10;
-    }
-
-    .card-text,
-    .text-muted {
-      color: #DAD6D2 !important;
+      color: var(--accent-red);
     }
 
     .main-h1 {
-        color: #A81E10;
-        font-family: fantasy;
-        font-size: 80px;
+      color: var(--accent-red);
+      font-family: fantasy;
+      font-size: 80px;
     }
 
-    .card-title,fw-bold {
-        color: #A81E10;
-        font-family: fantasy;
-        font-size:20px;
-        letter-spacing: 2px;
+    .card-title.fw-bold {
+      color: var(--accent-red);
+      font-family: fantasy;
+      font-size: 20px;
+      letter-spacing: 2px;
     }
+    
     .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 20px; /* controls both row and column spacing */
-  justify-content: center; /* centers the grid as a whole */
-  justify-items: center;
-  align-items: center;
-  max-width: 1000px; /* optional: limits how wide the grid spreads */
-  margin: 0 auto; /* centers the grid container */
-}
-
-.team-grid .card {
-  width: 100%;
-  max-width: 280px;
-}
-
-@media (max-width: 992px) {
-  .team-grid {
-    grid-template-columns: repeat(3, 1fr);
-    overflow-x: auto;
-    column-gap: 15px; /* slightly more room on smaller screens */
-    row-gap: 20px;
-  }
-}
-
-    nav.navbar {
-      background-color: #111A22 !important;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px; /* controls both row and column spacing */
+      justify-content: center; /* centers the grid as a whole */
+      justify-items: center;
+      align-items: center;
+      max-width: 1000px; /* optional: limits how wide the grid spreads */
+      margin: 0 auto; /* centers the grid container */
     }
 
-    .navbar-brand, .nav-link {
-      color: #f5f5f5 !important;
+    .team-grid .card {
+      width: 100%;
+      max-width: 280px;
     }
 
-    .navbar-brand:hover, .nav-link:hover {
-      color: #A81E10 !important;
+    @media (max-width: 992px) {
+      .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+        overflow-x: auto;
+        column-gap: 15px; /* slightly more room on smaller screens */
+        row-gap: 20px;
+      }
     }
 
+    /* Site-wide theme elements */
+    .navbar { 
+      background-color: var(--primary-dark) !important; 
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+    }
+    .navbar-brand { color: var(--light-green) !important; font-weight: bold; font-size: 1.8rem; }
+    .navbar-nav .nav-link { color: var(--light-green) !important; }
+    .navbar-nav .nav-link:hover { color: var(--accent-red) !important; }
+    .btn-primary { background-color: var(--accent-red); border-color: var(--dark-red); }
+    .btn-primary:hover { background-color: var(--dark-red); }
+    
     p.lead {
-      color: #DAD6D2;
+      color: var(--primary-dark);
     }
   </style>
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">🎥 MovieVerse</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="Homepage.html">
+        <i class="bi bi-film"></i> MoviTube
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Genres</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Top Rated</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Watchlist</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="Genres Page.html">Genres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Watchlist Page.html">Watchlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Contact Page.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About Us Page.html">About Us</a>
+          </li>
         </ul>
+        
+        <form class="d-flex" action="Search Results Page.html" method="GET">
+          <input class="form-control me-2" type="search" name="query" placeholder="Search Movies...">
+          <button class="btn btn-primary" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
       </div>
     </div>
   </nav>
@@ -130,7 +153,7 @@
         <div class="card-body text-center">
           <h5 class="card-title fw-bold">WYATT</h5>
           <p class="card-text"><strong>Role:</strong> Home page developer</p>
-          <p class="text-muted">| interesting factoid here yada yada yada yada ya |</p>
+          <p class="text-muted fst-italic">| interesting factoid here yada yada yada yada ya |</p>
         </div>
       </div>
 
@@ -140,7 +163,7 @@
         <div class="card-body text-center">
           <h5 class="card-title fw-bold">ARIANA</h5>
           <p class="card-text"><strong>Role:</strong> About Us page developer</p>
-          <p class="text-muted">| Creates digital art and loves Final Fantasy XIV |</p>
+          <p class="text-muted fst-italic">| Creates digital art and loves Final Fantasy XIV |</p>
         </div>
       </div>
 
@@ -150,7 +173,7 @@
         <div class="card-body text-center">
           <h5 class="card-title fw-bold">HUNTER</h5>
           <p class="card-text"><strong>Role:</strong> Contact page developer</p>
-          <p class="text-muted">| interesting factoid here yada yada yada yada ya |</p>
+          <p class="text-muted fst-italic">| interesting factoid here yada yada yada yada ya |</p>
         </div>
       </div>
 
@@ -160,7 +183,7 @@
         <div class="card-body text-center">
           <h5 class="card-title fw-bold">MICHAELA</h5>
           <p class="card-text"><strong>Role:</strong> ???? page developer</p>
-          <p class="text-muted">| interesting factoid here yada yada yada yada ya |</p>
+          <p class="text-muted fst-italic">| interesting factoid here yada yada yada yada ya |</p>
         </div>
       </div>
 
@@ -170,7 +193,7 @@
         <div class="card-body text-center">
           <h5 class="card-title fw-bold">MABEL</h5>
           <p class="card-text"><strong>Role:</strong> ???? page developer</p>
-          <p class="text-muted">| interesting factoid here yada yada yada yada ya |</p>
+          <p class="text-muted fst-italic">| interesting factoid here yada yada yada yada ya |</p>
         </div>
       </div>
 
@@ -184,7 +207,7 @@
   </div>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

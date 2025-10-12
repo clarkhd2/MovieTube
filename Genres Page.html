@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviTube - Genres</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom CSS with color scheme (copied from Homepage) -->
+    <style>
+        :root {
+            --primary-dark: #273043;
+            --primary-purple: #9197AE;
+            --light-green: #EFF6EE;
+            --accent-red: #F02D3A;
+            --dark-red: #DD0426;
+        }
+        
+        body {
+            background-color: var(--light-green);
+            color: var(--primary-dark);
+        }
+        
+        .navbar {
+            background-color: var(--primary-dark) !important;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        
+        .navbar-brand {
+            color: var(--light-green) !important;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--light-green) !important;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-red) !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-red);
+            border-color: var(--dark-red);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-red);
+            border-color: var(--dark-red);
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(39, 48, 67, 0.1);
+        }
+        
+        .card-header {
+            background-color: var(--primary-purple);
+            color: white;
+            border: none;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 10px;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="Homepage.html">
+                <i class="bi bi-film"></i> MoviTube
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Genres Page.html">Genres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Watchlist Page.html">Watchlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact Page.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About Us Page.html">About Us</a>
+                    </li>
+                </ul>
+                
+                <form class="d-flex" action="Search Results Page.html" method="GET">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Search Movies...">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Genres Content -->
+    <div class="container mt-4">
+        <section id="genres">
+            <h2 class="section-title text-center">Browse by Genre</h2>
+
+            <!-- Pills navigation to jump to each genre section -->
+            <div class="d-flex justify-content-center mb-4">
+                <ul class="nav nav-pills flex-row" role="tablist">
+                    <li class="nav-item me-2"><a class="nav-link active" href="#" data-genre="all">All</a></li>
+                    <li class="nav-item me-2"><a class="nav-link" href="#" data-genre="action">Action</a></li>
+                    <li class="nav-item me-2"><a class="nav-link" href="#" data-genre="comedy">Comedy</a></li>
+                    <li class="nav-item me-2"><a class="nav-link" href="#" data-genre="drama">Drama</a></li>
+                    <li class="nav-item me-2"><a class="nav-link" href="#" data-genre="scifi">Sci-Fi</a></li>
+                    <li class="nav-item me-2"><a class="nav-link" href="#" data-genre="romance">Romance</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-genre="horror">Horror</a></li>
+                </ul>
+            </div>
+
+            <!-- Action Section -->
+            <div id="action" class="mb-5">
+                <h3>Action</h3>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/273043/EFF6EE?text=Action+1" class="card-img-top" alt="Action 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Action Movie 1</h5>
+                                <p class="card-text small text-muted">Rating: 8.5</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/273043/EFF6EE?text=Action+2" class="card-img-top" alt="Action 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Action Movie 2</h5>
+                                <p class="card-text small text-muted">Rating: 8.2</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comedy Section -->
+            <div id="comedy" class="mb-5">
+                <h3>Comedy</h3>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/9197AE/EFF6EE?text=Comedy+1" class="card-img-top" alt="Comedy 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Comedy Movie 1</h5>
+                                <p class="card-text small text-muted">Rating: 7.8</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/9197AE/EFF6EE?text=Comedy+2" class="card-img-top" alt="Comedy 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Comedy Movie 2</h5>
+                                <p class="card-text small text-muted">Rating: 7.5</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drama Section -->
+            <div id="drama" class="mb-5">
+                <h3>Drama</h3>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/F02D3A/EFF6EE?text=Drama+1" class="card-img-top" alt="Drama 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Drama Movie 1</h5>
+                                <p class="card-text small text-muted">Rating: 8.9</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/F02D3A/EFF6EE?text=Drama+2" class="card-img-top" alt="Drama 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Drama Movie 2</h5>
+                                <p class="card-text small text-muted">Rating: 8.3</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sci-Fi Section -->
+            <div id="scifi" class="mb-5">
+                <h3>Sci-Fi</h3>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/273043/EFF6EE?text=Sci-Fi+1" class="card-img-top" alt="Sci-Fi 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Sci-Fi Movie 1</h5>
+                                <p class="card-text small text-muted">Rating: 8.7</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/273043/EFF6EE?text=Sci-Fi+2" class="card-img-top" alt="Sci-Fi 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Sci-Fi Movie 2</h5>
+                                <p class="card-text small text-muted">Rating: 8.1</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Romance Section -->
+            <div id="romance" class="mb-5">
+                <h3>Romance</h3>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/9197AE/EFF6EE?text=Romance+1" class="card-img-top" alt="Romance 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Romance Movie 1</h5>
+                                <p class="card-text small text-muted">Rating: 7.9</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/9197AE/EFF6EE?text=Romance+2" class="card-img-top" alt="Romance 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Romance Movie 2</h5>
+                                <p class="card-text small text-muted">Rating: 7.6</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horror Section -->
+            <div id="horror" class="mb-5">
+                <h3>Horror</h3>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/F02D3A/EFF6EE?text=Horror+1" class="card-img-top" alt="Horror 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Horror Movie 1</h5>
+                                <p class="card-text small text-muted">Rating: 7.2</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="https://via.placeholder.com/300x160/F02D3A/EFF6EE?text=Horror+2" class="card-img-top" alt="Horror 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Horror Movie 2</h5>
+                                <p class="card-text small text-muted">Rating: 6.8</p>
+                                <a href="#" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer (copied from Homepage) -->
+    <footer class="py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h5><i class="bi bi-film"></i> MoviTube</h5>
+                    <p class="mb-0">&copy; 2025 MoviTube. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+</footer>
+
+    <script>
+        // Simple genre filter: show only the selected section
+        (function() {
+            const pills = document.querySelectorAll('[data-genre]');
+            const sections = document.querySelectorAll('#genres > div[id]');
+
+            function showGenre(genre) {
+                // update pill active state
+                pills.forEach(p => {
+                    if (p.getAttribute('data-genre') === genre) p.classList.add('active');
+                    else p.classList.remove('active');
+                });
+
+                // toggle sections
+                sections.forEach(sec => {
+                    if (genre === 'all') {
+                        sec.style.display = '';
+                    } else {
+                        if (sec.id === genre) sec.style.display = '';
+                        else sec.style.display = 'none';
+                    }
+                });
+                // scroll to top of genres container for better UX
+                if (genre !== 'all') {
+                    const el = document.getElementById(genre);
+                    if (el) {
+                        // Scroll with offset to keep navbar visible
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const yOffset = -navbarHeight - 20; // extra padding for comfort
+                        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    }
+                } else {
+                    // Scroll with offset to keep navbar visible
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const genresEl = document.getElementById('genres');
+                    const yOffset = -navbarHeight - 20; // extra padding for comfort
+                    const y = genresEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                }
+            }
+
+            pills.forEach(p => {
+                p.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const genre = p.getAttribute('data-genre');
+                    showGenre(genre);
+                });
+            });
+
+            // initialize to all visible
+            showGenre('all');
+        })();
+
+        // Watchlist functionality: add/remove titles and persist in localStorage
+        (function() {
+            const STORAGE_KEY = 'moviTubeWatchlist';
+
+            function loadWatchlist() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    return raw ? JSON.parse(raw) : [];
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            function saveWatchlist(list) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+                } catch (e) {
+                    console.warn('Could not save watchlist', e);
+                }
+            }
+
+            function isInWatchlist(title) {
+                const list = loadWatchlist();
+                return list.indexOf(title) !== -1;
+            }
+
+            function toggleWatchlist(title, btn) {
+                const list = loadWatchlist();
+                const idx = list.indexOf(title);
+                if (idx >= 0) {
+                    // remove
+                    list.splice(idx, 1);
+                    btn.textContent = 'Add to Watchlist';
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-outline-primary');
+                } else {
+                    // add
+                    list.push(title);
+                    btn.textContent = 'Added';
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-success');
+                }
+                saveWatchlist(list);
+            }
+
+            // Add watchlist buttons to each card inside the genres section
+            const cards = document.querySelectorAll('#genres .card.h-100');
+            const currentWatchlist = loadWatchlist();
+
+            cards.forEach(card => {
+                const titleEl = card.querySelector('.card-title');
+                const title = titleEl ? titleEl.textContent.trim() : null;
+                if (!title) return;
+
+                // Create button
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'btn btn-outline-primary btn-sm ms-2 watchlist-btn';
+                btn.textContent = currentWatchlist.indexOf(title) !== -1 ? 'Added' : 'Add to Watchlist';
+                if (currentWatchlist.indexOf(title) !== -1) {
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-success');
+                }
+
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleWatchlist(title, btn);
+                });
+
+                // Place the button next to the primary view button if present
+                const viewBtn = card.querySelector('a.btn.btn-primary');
+                if (viewBtn) viewBtn.insertAdjacentElement('afterend', btn);
+                else card.querySelector('.card-body').appendChild(btn);
+            });
+        })();
+    </script>
+</body>
+</html>

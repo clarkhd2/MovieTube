@@ -1,47 +1,69 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MovieTube • Search Results</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-      /* Override toggler icon to be light on dark navbar */
-      .navbar-dark .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      :root {
+        --primary-dark: #273043;
+        --primary-purple: #9197AE;
+        --light-green: #EFF6EE;
+        --accent-red: #F02D3A;
+        --dark-red: #DD0426;
       }
+      body { background-color: var(--light-green); color: var(--primary-dark); }
+      .navbar { 
+        background-color: var(--primary-dark) !important; 
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+      }
+      .navbar-brand { color: var(--light-green) !important; font-weight: bold; font-size: 1.8rem; }
+      .navbar-nav .nav-link { color: var(--light-green) !important; }
+      .navbar-nav .nav-link:hover { color: var(--accent-red) !important; }
+      .btn-primary { background-color: var(--accent-red); border-color: var(--dark-red); }
+      .btn-primary:hover { background-color: var(--dark-red); }
+      .card { border: none; box-shadow: 0 4px 6px rgba(39,48,67,0.1); }
     </style>
   </head>
-  <body class="bg-dark text-light">
+  <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">MovieTube</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="Homepage.html">
+          <i class="bi bi-film"></i> MoviTube
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Genres</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Top Rated</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Watchlist</a></li>
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="Genres Page.html">Genres</a></li>
+            <li class="nav-item"><a class="nav-link" href="Watchlist Page.html">Watchlist</a></li>
+            <li class="nav-item"><a class="nav-link" href="Contact Page.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="About Us Page.html">About Us</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
     <!-- Search Controls -->
-    <section class="py-3 border-bottom border-secondary">
+  <section class="py-3 border-bottom" style="border-color: rgba(0,0,0,0.08);">
       <div class="container">
         <form class="row g-2 align-items-end" id="search-form">
-          <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6">
             <label class="form-label" for="q">Search</label>
-            <input type="search" class="form-control bg-dark text-light border-secondary" id="q" placeholder="Search movies...">
+            <input type="search" class="form-control" id="q" placeholder="Search movies...">
           </div>
           <div class="col-6 col-md-3">
             <label class="form-label" for="sort">Sort by</label>
-            <select id="sort" class="form-select bg-dark text-light border-secondary">
+            <select id="sort" class="form-select">
               <option value="relevance">Relevance</option>
               <option value="rating">Rating</option>
               <option value="year">Year</option>
@@ -49,7 +71,7 @@
             </select>
           </div>
           <div class="col-6 col-md-3 d-grid">
-            <button type="submit" class="btn btn-outline-light">Search</button>
+            <button type="submit" class="btn btn-primary">Search</button>
           </div>
         </form>
       </div>
@@ -61,38 +83,41 @@
         <!-- Filters -->
         <aside class="col-lg-3">
           <h2 class="h5">Filters</h2>
-          <div class="card bg-black border-secondary">
+          <div class="card">
             <div class="card-body">
               <h3 class="h6">Genres</h3>
-              <div class="form-check">
-                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="gAction">
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gAction">
                 <label class="form-check-label" for="gAction">Action</label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="gDrama">
-                <label class="form-check-label" for="gDrama">Drama</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="gComedy">
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gComedy">
                 <label class="form-check-label" for="gComedy">Comedy</label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="gScifi">
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gDrama">
+                <label class="form-check-label" for="gDrama">Drama</label>
+              </div>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gScifi">
                 <label class="form-check-label" for="gScifi">Sci‑Fi</label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="gAnim">
-                <label class="form-check-label" for="gAnim">Animation</label>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gRomance">
+                <label class="form-check-label" for="gRomance">Romance</label>
               </div>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gHorror">
+                <label class="form-check-label" for="gHorror">Horror</label>
               <hr>
               <h3 class="h6">Year</h3>
               <div class="input-group mb-2">
-                <span class="input-group-text bg-dark text-light border-secondary">From</span>
-                <input type="number" class="form-control bg-dark text-light border-secondary" placeholder="2000">
+                <span class="input-group-text">From</span>
+                <input type="number" class="form-control" placeholder="2000">
               </div>
               <div class="input-group">
-                <span class="input-group-text bg-dark text-light border-secondary">To</span>
-                <input type="number" class="form-control bg-dark text-light border-secondary" placeholder="2025">
+                <span class="input-group-text">To</span>
+                <input type="number" class="form-control" placeholder="2025">
               </div>
               <hr>
               <h3 class="h6">Rating</h3>
@@ -111,8 +136,8 @@
           <!-- Results Grid -->
           <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3" id="results">
             <div class="col">
-              <article class="card bg-black border-secondary h-100">
-                <div class="ratio ratio-2x3 border border-secondary"></div>
+                <article class="card h-100">
+                <div class="ratio ratio-2x3" style="background-color: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.08);"></div>
                 <div class="card-body">
                   <h3 class="card-title h6">Movie Title</h3>
                   <p class="card-text small">Year • Genre • Runtime</p>
@@ -120,8 +145,8 @@
               </article>
             </div>
             <div class="col">
-              <article class="card bg-black border-secondary h-100">
-                <div class="ratio ratio-2x3 border border-secondary"></div>
+                <article class="card h-100">
+                <div class="ratio ratio-2x3" style="background-color: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.08);"></div>
                 <div class="card-body">
                   <h3 class="card-title h6">Movie Title</h3>
                   <p class="card-text small">Year • Genre • Runtime</p>
@@ -145,5 +170,28 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Function to get URL parameters
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      }
+      
+      // When the page loads, fill the search box with query parameter if it exists
+      document.addEventListener('DOMContentLoaded', function() {
+        const queryValue = getUrlParameter('query');
+        if (queryValue) {
+          // Set the value in the main search input
+          document.getElementById('q').value = queryValue;
+          // Update the results query label if it exists
+          const queryLabel = document.getElementById('query-label');
+          if (queryLabel) {
+            queryLabel.textContent = queryValue || 'All';
+          }
+        }
+      });
+    </script>
   </body>
 </html>
