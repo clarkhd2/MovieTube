@@ -20,7 +20,11 @@
             --accent-red: #F02D3A;
             --dark-red: #DD0426;
         }
-        body { background-color: var(--light-green); color: var(--primary-dark); }
+        body { background-color: var(--primary-dark); color: var(--light-green); }
+        /* Better text contrast for dark mode */
+        .text-muted { color: var(--primary-purple) !important; }
+        .card-title { color: var(--light-green); }
+        .card-text { color: var(--primary-purple); }
         .navbar { 
             background-color: var(--primary-dark) !important; 
             padding-top: 0.8rem;
@@ -30,8 +34,8 @@
         .navbar-nav .nav-link { color: var(--light-green) !important; }
         .btn-primary { background-color: var(--accent-red); border-color: var(--dark-red); }
         .btn-primary:hover { background-color: var(--dark-red); }
-        .card { border: none; box-shadow: 0 4px 6px rgba(39,48,67,0.1); }
-        .section-title { color: var(--primary-dark); border-bottom: 2px solid var(--accent-red); padding-bottom: 10px; margin-bottom: 2rem; }
+        .card { border: 1px solid var(--primary-purple); background-color: #1f2633; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .section-title { color: var(--light-green); border-bottom: 2px solid var(--accent-red); padding-bottom: 10px; margin-bottom: 2rem; }
     </style>
 </head>
 <body>
@@ -70,17 +74,17 @@
             <!-- Watchlist items will be rendered here -->
         </div>
 
-        <div id="emptyState" class="text-center text-muted mt-5" style="display:none;">
-            <i class="bi bi-bookmark-heart" style="font-size:48px;color:#9197AE"></i>
-            <h4 class="mt-3">No items in your watchlist</h4>
-            <p class="mb-0">Browse genres and add movies to your watchlist to see them here.</p>
+        <div id="emptyState" class="text-center mt-5" style="display:none;">
+            <i class="bi bi-bookmark-heart" style="font-size:48px;color:var(--accent-red)"></i>
+            <h4 class="mt-3" style="color:var(--light-green)">No items in your watchlist</h4>
+            <p class="mb-0" style="color:var(--primary-purple)">Browse genres and add movies to your watchlist to see them here.</p>
         </div>
     </div>
 
-    <footer class="py-4 mt-5">
+    <footer class="py-4 mt-5" style="border-top: 1px solid var(--primary-purple);">
         <div class="container text-center">
-            <h5><i class="bi bi-film"></i> MoviTube</h5>
-            <p class="mb-0">&copy; 2025 MoviTube. All rights reserved.</p>
+            <h5 style="color:var(--light-green)"><i class="bi bi-film"></i> MoviTube</h5>
+            <p class="mb-0" style="color:var(--primary-purple)">&copy; 2025 MoviTube. All rights reserved.</p>
         </div>
     </footer>
 
@@ -118,7 +122,7 @@
 
                     const img = document.createElement('img');
                     img.className = 'card-img-top';
-                    img.src = 'https://via.placeholder.com/300x160/9197AE/EFF6EE?text=' + encodeURIComponent(title);
+                    img.src = 'https://via.placeholder.com/300x160/1f2633/EFF6EE?text=' + encodeURIComponent(title);
                     img.alt = title;
 
                     const body = document.createElement('div');
@@ -129,7 +133,7 @@
                     h5.textContent = title;
 
                     const meta = document.createElement('p');
-                    meta.className = 'card-text small text-muted mb-2';
+                    meta.className = 'card-text small mb-2';
                     meta.textContent = 'Saved to watchlist';
 
                     const controls = document.createElement('div');

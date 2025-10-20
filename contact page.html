@@ -20,7 +20,7 @@
             --accent-red: #F02D3A;
             --dark-red: #DD0426;
         }
-        body { background-color: var(--light-green); color: var(--primary-dark); }
+        body { background-color: var(--primary-dark); color: var(--light-green); }
         .navbar { 
             background-color: var(--primary-dark) !important;
             padding-top: 0.8rem;
@@ -31,8 +31,11 @@
         .navbar-nav .nav-link:hover { color: var(--accent-red) !important; }
         .btn-primary { background-color: var(--accent-red); border-color: var(--dark-red); }
         .btn-primary:hover { background-color: var(--dark-red); }
-        .card { border: none; box-shadow: 0 4px 6px rgba(39,48,67,0.1); }
-        .section-title { color: var(--primary-dark); border-bottom: 2px solid var(--accent-red); padding-bottom: 10px; margin-bottom: 2rem; }
+        .card { border: 1px solid var(--primary-purple); background-color: #1f2633; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .card-title { color: var(--light-green); }
+        .card-text { color: var(--primary-purple); }
+        .text-muted { color: var(--primary-purple) !important; }
+        .section-title { color: var(--light-green); border-bottom: 2px solid var(--accent-red); padding-bottom: 10px; margin-bottom: 2rem; }
     </style>
 </head>
 <body>
@@ -91,10 +94,10 @@
         </div>
     </div>
 
-    <footer class="py-4 mt-5">
+    <footer class="py-4 mt-5" style="border-top: 1px solid var(--primary-purple);">
         <div class="container text-center">
-            <h5><i class="bi bi-film"></i> MoviTube</h5>
-            <p class="mb-0">&copy; 2025 MoviTube. All rights reserved.</p>
+            <h5 style="color:var(--light-green)"><i class="bi bi-film"></i> MoviTube</h5>
+            <p class="mb-0" style="color:var(--primary-purple)">&copy; 2025 MoviTube. All rights reserved.</p>
         </div>
     </footer>
 
