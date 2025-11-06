@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Reviews</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <style>
+    body { background-color: #f5f5f5; }
+    #moviePoster { max-width: 200px; }
+    .star-rating {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .star-rating.selected {
+      color: gold;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    <a class="navbar-brand" href="index.html">Movie Finder</a>
+    <div class="navbar-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="search.html">Search</a>
+      <a class="nav-link active" href="reviews.html">Reviews</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+      <a class="nav-link" href="members.html">Group Members</a>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+
+    <h2 class="text-center mb-4">Movie Reviews</h2>
+
+    <!-- Search Form -->
+    <div class="input-group mb-4">
+      <input type="text" id="movieSearch" class="form-control" placeholder="Search for a movie...">
+      <button class="btn btn-primary" id="findMovie">Find Movie</button>
+    </div>
+
+    <!-- Movie Info -->
+    <div id="movieInfo" class="text-center mb-4" style="display:none;">
+      <img id="moviePoster" class="img-fluid rounded shadow-sm mb-3" alt="Movie Poster">
+      <h3 id="movieTitle"></h3>
+      <p id="movieYear" class="text-muted"></p>
+    </div>
+
+    <!-- Review Section -->
+    <div id="reviewSection" style="display:none;">
+      <h4>Write an Anonymous Review</h4>
+
+      <!-- Star Rating -->
+      <div id="ratingStars" class="mb-3">
+        ★ ★ ★ ★ ★
+      </div>
+
+      <textarea id="reviewText" class="form-control mb-2" placeholder="Your review..."></textarea>
+      <button class="btn btn-success mb-4" id="submitReview">Submit Review</button>
+
+      <h4>User Reviews</h4>
+      <ul id="reviewsList" class="list-group"></ul>
+    </div>
+  </div>
+
+  <script>
+    const apiKey = "YOUR_API_KEY_HERE";
+    let selectedRating = 0;
+
+    // Turn stars into clickable rating buttons
+    const starsElement = document.getElementById("ratingStars");
+    starsElement.innerHTML = "★ ★ ★ ★ ★"
+      .split(" ")
+      .map((star, i) => `<span class="star-rating" data-value="${i+1}">★</span>`)
+      .join("");
+
+    document.querySelectorAll(".star-rating").forEach(star => {
+      star.addEventListener("click", () => {
+        selectedRating = star.getAttribute("data-value");
+        document.querySelectorAll(".star-rating").forEach(s => s.classList.remove("selected"));
+        for (let i = 0; i < selectedRating; i++) {
+          document.querySelectorAll(".star-rating")[i].classList.add("selected");
+        }
+      });
+    });
+
+    // Find Movie
+    document.getElementById("findMovie").addEventListener("click", function() {
+      const query = document.getElementById("movieSearch").value.trim();
+      if (!query) return alert("Please enter a movie title.");
+
+      fetch(`https://www.omdbapi.com/?apikey=${apiKey}&t=${query}`)
+        .then(res => res.json())
+        .then(movie => {
+          if (movie.Response === "False") return alert("Movie not found.");
+
+          document.getElementById("movieInfo").style.display = "block";
+          document.getElementById("reviewSection").style.display = "block";
+
+          document.getElementById("moviePoster").src =
+            movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/200x300";
+
+          document.getElementById("movieTitle").textContent = movie.Title;
+          document.getElementById("movieYear").textContent = "Released: " + movie.Year;
+
+          loadReviews(movie.Title);
+        });
+    });
+
+    // Load Reviews
+    function loadReviews(title) {
+      const reviews = JSON.parse(localStorage.getItem(title)) || [];
+      const list = document.getElementById("reviewsList");
+      list.innerHTML = "";
+
+      reviews.forEach(r => {
+        list.innerHTML += `
+          <li class="list-group-item">
+            <strong>${"★".repeat(r.rating)}</strong><br>
+            ${r.text}
+          </li>`;
+      });
+    }
+
+    // Submit Review
+    document.getElementById("submitReview").addEventListener("click", function() {
+      const title = document.getElementById("movieTitle").textContent;
+      const reviewText = document.getElementById("reviewText").value.trim();
+
+      if (selectedRating === 0) return alert("Please select a star rating.");
+      if (!reviewText) return;
+
+      const reviews = JSON.parse(localStorage.getItem(title)) || [];
+      reviews.push({ rating: selectedRating, text: reviewText });
+      localStorage.setItem(title, JSON.stringify(reviews));
+
+      document.getElementById("reviewText").value = "";
+      selectedRating = 0;
+      document.querySelectorAll(".star-rating").forEach(s => s.classList.remove("selected"));
+
+      loadReviews(title);
+    });
+  </script>
+
+</body>
+</html>
