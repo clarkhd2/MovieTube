@@ -91,6 +91,8 @@
     <script>
         (function() {
             const STORAGE_KEY = 'moviTubeWatchlist';
+            const API_KEY = "fd0ac2a4"; // OMDb API key
+            const OMDB_BASE = "https://www.omdbapi.com/";
 
             function loadWatchlist() {
                 try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : []; }
@@ -102,7 +104,20 @@
                 catch (e) { console.warn('Could not save watchlist', e); }
             }
 
-            function render() {
+            // Fetch movie details from OMDb API
+            async function fetchMovieDetails(title) {
+                try {
+                    const url = `${OMDB_BASE}?apikey=${API_KEY}&t=${encodeURIComponent(title)}`;
+                    const res = await fetch(url);
+                    const data = await res.json();
+                    return data.Response === "True" ? data : null;
+                } catch (err) {
+                    console.error("Error fetching movie details:", err);
+                    return null;
+                }
+            }
+
+            async function render() {
                 const container = document.getElementById('watchlistContainer');
                 const empty = document.getElementById('emptyState');
                 container.innerHTML = '';
@@ -113,7 +128,33 @@
                 }
                 empty.style.display = 'none';
 
-                list.forEach(title => {
+                // Show loading placeholders
+                container.innerHTML = list.map(() => `
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100 placeholder-glow">
+                            <div class="ratio ratio-3x4 bg-secondary"></div>
+                            <div class="card-body">
+                                <h5 class="card-title"><span class="placeholder col-8"></span></h5>
+                                <p class="card-text"><span class="placeholder col-6"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Fetch details for each movie
+                const movieDetails = await Promise.all(
+                    list.map(item => {
+                        // Handle both old format (string) and new format (object)
+                        const title = typeof item === 'string' ? item : item.title;
+                        return fetchMovieDetails(title);
+                    })
+                );
+
+                container.innerHTML = '';
+
+                movieDetails.forEach((movie, index) => {
+                    if (!movie) return;
+
                     const col = document.createElement('div');
                     col.className = 'col-sm-6 col-md-4 col-lg-3 mb-4';
 
@@ -122,34 +163,42 @@
 
                     const img = document.createElement('img');
                     img.className = 'card-img-top';
-                    img.src = 'https://via.placeholder.com/300x160/1f2633/EFF6EE?text=' + encodeURIComponent(title);
-                    img.alt = title;
+                    img.style.height = '350px';
+                    img.style.objectFit = 'cover';
+                    img.src = movie.Poster && movie.Poster !== "N/A" 
+                        ? movie.Poster 
+                        : 'https://via.placeholder.com/300x450/1f2633/EFF6EE?text=' + encodeURIComponent(movie.Title);
+                    img.alt = movie.Title;
 
                     const body = document.createElement('div');
                     body.className = 'card-body d-flex flex-column';
 
                     const h5 = document.createElement('h5');
                     h5.className = 'card-title';
-                    h5.textContent = title;
+                    h5.textContent = movie.Title;
 
                     const meta = document.createElement('p');
                     meta.className = 'card-text small mb-2';
-                    meta.textContent = 'Saved to watchlist';
+                    meta.innerHTML = `
+                        Year: ${movie.Year || "N/A"}<br>
+                        ${movie.imdbRating && movie.imdbRating !== "N/A" ? "Rating: ⭐ " + movie.imdbRating : ""}
+                    `;
 
                     const controls = document.createElement('div');
                     controls.className = 'mt-auto';
 
                     const view = document.createElement('a');
-                    view.href = '#';
+                    view.href = movie.imdbID ? `https://www.imdb.com/title/${movie.imdbID}/` : '#';
+                    view.target = '_blank';
                     view.className = 'btn btn-primary btn-sm';
-                    view.textContent = 'View';
+                    view.textContent = 'View on IMDb';
 
                     const remove = document.createElement('button');
                     remove.className = 'btn btn-outline-danger btn-sm ms-2';
                     remove.textContent = 'Remove';
                     remove.addEventListener('click', (e) => {
                         e.preventDefault();
-                        removeItem(title);
+                        removeItem(movie.Title);
                     });
 
                     controls.appendChild(view);
@@ -168,12 +217,12 @@
 
             function removeItem(title) {
                 const list = loadWatchlist();
-                const idx = list.indexOf(title);
-                if (idx >= 0) {
-                    list.splice(idx, 1);
-                    saveWatchlist(list);
-                    render();
-                }
+                const filtered = list.filter(item => {
+                    const itemTitle = typeof item === 'string' ? item : item.title;
+                    return itemTitle !== title;
+                });
+                saveWatchlist(filtered);
+                render();
             }
 
             document.getElementById('clearWatchlist').addEventListener('click', (e) => {

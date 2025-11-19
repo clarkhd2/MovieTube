@@ -315,135 +315,277 @@
     
 </footer>
 
+    <!-- OMDb API integration for Genres page -->
     <script>
-        // Simple genre filter: show only the selected section
-        (function() {
-            const pills = document.querySelectorAll('[data-genre]');
-            const sections = document.querySelectorAll('#genres > div[id]');
+    (() => {
+      const API_KEY = "fd0ac2a4"; // OMDb API key
+      const OMDB_BASE = "https://www.omdbapi.com/";
 
-            function showGenre(genre) {
-                // update pill active state
-                pills.forEach(p => {
-                    if (p.getAttribute('data-genre') === genre) p.classList.add('active');
-                    else p.classList.remove('active');
-                });
+      // Helper function to escape HTML
+      const esc = (s) =>
+        String(s).replace(/[&<>\"']/g, (m) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[m]);
 
-                // toggle sections
-                sections.forEach(sec => {
-                    if (genre === 'all') {
-                        sec.style.display = '';
-                    } else {
-                        if (sec.id === genre) sec.style.display = '';
-                        else sec.style.display = 'none';
-                    }
-                });
-                // scroll to top of genres container for better UX
-                if (genre !== 'all') {
-                    const el = document.getElementById(genre);
-                    if (el) {
-                        // Scroll with offset to keep navbar visible
-                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                        const yOffset = -navbarHeight - 20; // extra padding for comfort
-                        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                        window.scrollTo({top: y, behavior: 'smooth'});
-                    }
-                } else {
-                    // Scroll with offset to keep navbar visible
-                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    const genresEl = document.getElementById('genres');
-                    const yOffset = -navbarHeight - 20; // extra padding for comfort
-                    const y = genresEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    window.scrollTo({top: y, behavior: 'smooth'});
-                }
+      // Search movies by query
+      async function searchMovies(query, page = 1) {
+        try {
+          const url = `${OMDB_BASE}?apikey=${API_KEY}&s=${encodeURIComponent(query)}&type=movie&page=${page}`;
+          const res = await fetch(url);
+          const data = await res.json();
+          return data.Response === "True" ? data.Search || [] : [];
+        } catch (err) {
+          console.error("Error searching movies:", err);
+          return [];
+        }
+      }
+
+      // Fetch movie details by IMDb ID
+      async function fetchMovieById(imdbId) {
+        try {
+          const url = `${OMDB_BASE}?apikey=${API_KEY}&i=${imdbId}`;
+          const res = await fetch(url);
+          const data = await res.json();
+          return data.Response === "True" ? data : null;
+        } catch (err) {
+          console.error("Error fetching movie:", err);
+          return null;
+        }
+      }
+
+      // Create movie card HTML
+      function createMovieCard(movie) {
+        const title = movie.Title || "Untitled";
+        const year = movie.Year || "N/A";
+        const rating = movie.imdbRating || "N/A";
+        const poster = movie.Poster && movie.Poster !== "N/A" 
+          ? movie.Poster 
+          : "https://via.placeholder.com/300x450/273043/EFF6EE?text=No+Image";
+        const imdbUrl = movie.imdbID ? `https://www.imdb.com/title/${movie.imdbID}/` : "#";
+
+        return `
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+              <img src="${poster}" class="card-img-top" alt="${esc(title)}" style="height: 350px; object-fit: cover;">
+              <div class="card-body">
+                <h5 class="card-title">${esc(title)}</h5>
+                <p class="card-text small text-muted">
+                  Year: ${year}<br>
+                  Rating: ${rating !== "N/A" ? "⭐ " + rating : "N/A"}
+                </p>
+                <a href="${imdbUrl}" target="_blank" class="btn btn-primary btn-sm">View on IMDb</a>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      // Loading placeholder
+      function createLoadingCard() {
+        return `
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 placeholder-glow">
+              <div class="ratio ratio-3x4 bg-secondary"></div>
+              <div class="card-body">
+                <h5 class="card-title"><span class="placeholder col-8"></span></h5>
+                <p class="card-text"><span class="placeholder col-6"></span></p>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      // Load movies for a specific genre
+      async function loadGenreMovies(genreId, searchQuery) {
+        const genreSection = document.getElementById(genreId);
+        if (!genreSection) return;
+
+        const rowContainer = genreSection.querySelector('.row');
+        if (!rowContainer) return;
+
+        // Show loading state
+        rowContainer.innerHTML = createLoadingCard().repeat(8);
+
+        // Search for movies
+        const movies = await searchMovies(searchQuery);
+        
+        if (movies.length === 0) {
+          rowContainer.innerHTML = `
+            <div class="col-12">
+              <div class="alert alert-secondary" role="alert">
+                No movies found for this genre.
+              </div>
+            </div>`;
+          return;
+        }
+
+        // Fetch detailed info for each movie (to get ratings)
+        const detailedMovies = await Promise.all(
+          movies.slice(0, 8).map(m => fetchMovieById(m.imdbID))
+        );
+
+        const validMovies = detailedMovies.filter(m => m !== null);
+        rowContainer.innerHTML = validMovies.map(createMovieCard).join('');
+
+        // Re-attach watchlist functionality to new cards
+        attachWatchlistButtons(genreSection);
+      }
+
+      // Watchlist functionality
+      const STORAGE_KEY = 'moviTubeWatchlist';
+
+      function loadWatchlist() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveWatchlist(list) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (e) {
+          console.warn('Could not save watchlist', e);
+        }
+      }
+
+      function toggleWatchlist(title, btn) {
+        const list = loadWatchlist();
+        const idx = list.indexOf(title);
+        if (idx >= 0) {
+          list.splice(idx, 1);
+          btn.textContent = 'Add to Watchlist';
+          btn.classList.remove('btn-success');
+          btn.classList.add('btn-outline-primary');
+        } else {
+          list.push(title);
+          btn.textContent = 'Added';
+          btn.classList.remove('btn-outline-primary');
+          btn.classList.add('btn-success');
+        }
+        saveWatchlist(list);
+      }
+
+      function attachWatchlistButtons(container) {
+        const cards = container.querySelectorAll('.card.h-100');
+        const currentWatchlist = loadWatchlist();
+
+        cards.forEach(card => {
+          const titleEl = card.querySelector('.card-title');
+          const title = titleEl ? titleEl.textContent.trim() : null;
+          if (!title) return;
+
+          // Don't add button if it already exists
+          if (card.querySelector('.watchlist-btn')) return;
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'btn btn-outline-primary btn-sm ms-2 watchlist-btn';
+          btn.textContent = currentWatchlist.indexOf(title) !== -1 ? 'Added' : 'Add to Watchlist';
+          if (currentWatchlist.indexOf(title) !== -1) {
+            btn.classList.remove('btn-outline-primary');
+            btn.classList.add('btn-success');
+          }
+
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleWatchlist(title, btn);
+          });
+
+          const viewBtn = card.querySelector('a.btn.btn-primary');
+          if (viewBtn) viewBtn.insertAdjacentElement('afterend', btn);
+          else card.querySelector('.card-body').appendChild(btn);
+        });
+      }
+
+      // Genre filter functionality
+      function setupGenreFilter() {
+        const pills = document.querySelectorAll('[data-genre]');
+        const sections = document.querySelectorAll('#genres > div[id]');
+
+        function showGenre(genre) {
+          pills.forEach(p => {
+            if (p.getAttribute('data-genre') === genre) p.classList.add('active');
+            else p.classList.remove('active');
+          });
+
+          sections.forEach(sec => {
+            if (genre === 'all') {
+              sec.style.display = '';
+            } else {
+              if (sec.id === genre) sec.style.display = '';
+              else sec.style.display = 'none';
             }
+          });
 
-            pills.forEach(p => {
-                p.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const genre = p.getAttribute('data-genre');
-                    showGenre(genre);
-                });
-            });
-
-            // initialize to all visible
-            showGenre('all');
-        })();
-
-        // Watchlist functionality: add/remove titles and persist in localStorage
-        (function() {
-            const STORAGE_KEY = 'moviTubeWatchlist';
-
-            function loadWatchlist() {
-                try {
-                    const raw = localStorage.getItem(STORAGE_KEY);
-                    return raw ? JSON.parse(raw) : [];
-                } catch (e) {
-                    return [];
-                }
+          if (genre !== 'all') {
+            const el = document.getElementById(genre);
+            if (el) {
+              const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+              const yOffset = -navbarHeight - 20;
+              const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              window.scrollTo({top: y, behavior: 'smooth'});
             }
-
-            function saveWatchlist(list) {
-                try {
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-                } catch (e) {
-                    console.warn('Could not save watchlist', e);
-                }
+          } else {
+            const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+            const genresEl = document.getElementById('genres');
+            if (genresEl) {
+              const yOffset = -navbarHeight - 20;
+              const y = genresEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              window.scrollTo({top: y, behavior: 'smooth'});
             }
+          }
+        }
 
-            function isInWatchlist(title) {
-                const list = loadWatchlist();
-                return list.indexOf(title) !== -1;
+        pills.forEach(p => {
+          p.addEventListener('click', (e) => {
+            e.preventDefault();
+            const genre = p.getAttribute('data-genre');
+            showGenre(genre);
+          });
+        });
+
+        showGenre('all');
+      }
+
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', async () => {
+        // Set up genre filter
+        setupGenreFilter();
+
+        // Check if there's a hash in the URL and show that genre
+        const hash = window.location.hash.substring(1); // Remove the '#'
+        if (hash && ['action', 'comedy', 'drama', 'scifi', 'romance', 'horror'].includes(hash)) {
+          // Wait a bit for the page to render, then trigger the genre filter
+          setTimeout(() => {
+            const genrePill = document.querySelector(`[data-genre="${hash}"]`);
+            if (genrePill) {
+              genrePill.click();
             }
+          }, 500);
+        }
 
-            function toggleWatchlist(title, btn) {
-                const list = loadWatchlist();
-                const idx = list.indexOf(title);
-                if (idx >= 0) {
-                    // remove
-                    list.splice(idx, 1);
-                    btn.textContent = 'Add to Watchlist';
-                    btn.classList.remove('btn-success');
-                    btn.classList.add('btn-outline-primary');
-                } else {
-                    // add
-                    list.push(title);
-                    btn.textContent = 'Added';
-                    btn.classList.remove('btn-outline-primary');
-                    btn.classList.add('btn-success');
-                }
-                saveWatchlist(list);
-            }
+        // Load movies for each genre
+        const genres = [
+          { id: 'action', query: 'action' },
+          { id: 'comedy', query: 'comedy' },
+          { id: 'drama', query: 'drama' },
+          { id: 'scifi', query: 'science fiction' },
+          { id: 'romance', query: 'romance' },
+          { id: 'horror', query: 'horror' }
+        ];
 
-            // Add watchlist buttons to each card inside the genres section
-            const cards = document.querySelectorAll('#genres .card.h-100');
-            const currentWatchlist = loadWatchlist();
-
-            cards.forEach(card => {
-                const titleEl = card.querySelector('.card-title');
-                const title = titleEl ? titleEl.textContent.trim() : null;
-                if (!title) return;
-
-                // Create button
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'btn btn-outline-primary btn-sm ms-2 watchlist-btn';
-                btn.textContent = currentWatchlist.indexOf(title) !== -1 ? 'Added' : 'Add to Watchlist';
-                if (currentWatchlist.indexOf(title) !== -1) {
-                    btn.classList.remove('btn-outline-primary');
-                    btn.classList.add('btn-success');
-                }
-
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    toggleWatchlist(title, btn);
-                });
-
-                // Place the button next to the primary view button if present
-                const viewBtn = card.querySelector('a.btn.btn-primary');
-                if (viewBtn) viewBtn.insertAdjacentElement('afterend', btn);
-                else card.querySelector('.card-body').appendChild(btn);
-            });
-        })();
+        // Load all genres in parallel
+        await Promise.all(
+          genres.map(genre => loadGenreMovies(genre.id, genre.query))
+        );
+      });
+    })();
     </script>
 </body>
 </html>
+
