@@ -16,14 +16,14 @@
         :root {
             --primary-dark: #273043;
             --primary-purple: #9197AE;
-            --light-green: #EFF6EE;
+            --off-white: #EFF6EE;
             --accent-red: #F02D3A;
             --dark-red: #DD0426;
         }
         
         body {
             background-color: var(--primary-dark);
-            color: var(--light-green);
+            color: var(--off-white);
         }
         
         .navbar {
@@ -33,13 +33,13 @@
         }
         
         .navbar-brand {
-            color: var(--light-green) !important;
+            color: var(--off-white) !important;
             font-weight: bold;
             font-size: 1.8rem;
         }
         
         .navbar-nav .nav-link {
-            color: var(--light-green) !important;
+            color: var(--off-white) !important;
         }
         
         .navbar-nav .nav-link:hover {
@@ -62,7 +62,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
         
-        .card-title { color: var(--light-green); }
+        .card-title { color: var(--off-white); }
         .card-text { color: var(--primary-purple); }
         .text-muted { color: var(--primary-purple) !important; }
         
@@ -125,12 +125,12 @@
         
         footer {
             background-color: var(--primary-dark);
-            color: var(--light-green);
+            color: var(--off-white);
             margin-top: 4rem;
         }
         
         .section-title {
-            color: var(--light-green);
+            color: var(--off-white);
             border-bottom: 2px solid var(--accent-red);
             padding-bottom: 10px;
             margin-bottom: 2rem;
@@ -157,6 +157,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Watchlist Page.html">Watchlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reviews Page.html">Reviews</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Contact Page.html">Contact</a>
@@ -189,50 +192,7 @@
                 </div>
                 
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/400x200/273043/EFF6EE?text=Movie+1" class="card-img-top" alt="Movie 1">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Movie Title 1</h5>
-                                        <p class="card-text">Short description about the movie goes here.</p>
-                                        <a href="#" class="btn btn-primary">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-item">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/400x200/9197AE/EFF6EE?text=Movie+2" class="card-img-top" alt="Movie 2">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Movie Title 2</h5>
-                                        <p class="card-text">Short description about the movie goes here.</p>
-                                        <a href="#" class="btn btn-primary">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-item">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/400x200/F02D3A/EFF6EE?text=Movie+3" class="card-img-top" alt="Movie 3">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Movie Title 3</h5>
-                                        <p class="card-text">Short description about the movie goes here.</p>
-                                        <a href="#" class="btn btn-primary">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 
                 <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
@@ -256,21 +216,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie A
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie B
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie C
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="card-footer bg-transparent border-top border-secondary">
@@ -286,21 +232,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie A
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie B
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie C
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="card-footer bg-transparent border-top border-secondary">
@@ -316,21 +248,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie A
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie B
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="text-decoration-none">
-                                        <i class="bi bi-info-circle"></i> Movie C
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="card-footer bg-transparent border-top border-secondary">
@@ -347,20 +265,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h5 style="color:var(--light-green)"><i class="bi bi-film"></i> MoviTube</h5>
+                    <h5 style="color:var(--off-white)"><i class="bi bi-film"></i> MoviTube</h5>
                     <p class="mb-0" style="color:var(--primary-purple)">&copy; 2025 MoviTube. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- OMDb API integration for homepage -->
+    <!-- API integration -->
     <script>
     (() => {
       const API_KEY = "fd0ac2a4"; // OMDb API key
       const OMDB_BASE = "https://www.omdbapi.com/";
 
-      // Helper function to escape HTML
       const esc = (s) =>
         String(s).replace(/[&<>\"']/g, (m) => ({
           "&": "&amp;",
@@ -370,7 +287,6 @@
           "'": "&#39;"
         })[m]);
 
-      // Fetch movie details by IMDb ID
       async function fetchMovieById(imdbId) {
         try {
           const url = `${OMDB_BASE}?apikey=${API_KEY}&i=${imdbId}&plot=short`;
@@ -383,7 +299,6 @@
         }
       }
 
-      // Search movies by title
       async function searchMovies(query) {
         try {
           const url = `${OMDB_BASE}?apikey=${API_KEY}&s=${encodeURIComponent(query)}&type=movie`;
@@ -396,13 +311,12 @@
         }
       }
 
-      // Populate the featured carousel with top movies
       async function loadFeaturedMovies() {
         const carouselInner = document.querySelector("#featuredCarousel .carousel-inner");
         if (!carouselInner) return;
 
         // Popular movie IMDb IDs for the carousel
-        const featuredIds = ["tt0111161", "tt0068646", "tt0468569"]; // Shawshank, Godfather, Dark Knight
+        const featuredIds = ["tt0111161", "tt0068646", "tt0468569"];
 
         carouselInner.innerHTML = `
           <div class="carousel-item active">
@@ -453,7 +367,6 @@
         }).join("");
       }
 
-      // Populate category sections with movies
       async function loadCategoryMovies() {
         const categories = [
           { name: "action", query: "action", elementId: null },
@@ -461,7 +374,6 @@
           { name: "drama", query: "drama", elementId: null }
         ];
 
-        // Get all category card bodies
         const categoryCards = document.querySelectorAll("#categories .card-body");
         
         for (let i = 0; i < Math.min(categories.length, categoryCards.length); i++) {
@@ -471,10 +383,9 @@
           
           if (!list) continue;
 
-          // Show loading state
           list.innerHTML = `<li class="placeholder-glow"><span class="placeholder col-12"></span></li>`.repeat(5);
 
-          // Search for movies in this category
+
           const movies = await searchMovies(category.query);
           const topMovies = movies.slice(0, 5);
 
@@ -498,7 +409,7 @@
         }
       }
 
-      // Initialize on page load
+
       document.addEventListener("DOMContentLoaded", () => {
         loadFeaturedMovies();
         loadCategoryMovies();

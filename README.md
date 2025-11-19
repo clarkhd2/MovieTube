@@ -11,3 +11,9 @@ Our elaborate website allows users to search for a diverse range of movies. Movi
 - Contact Us Page
 - Watchlist Page
 - Searchbar and Search Page
+
+## Group Members
+- Hunter Clark
+- Mabel Alagbe
+- Michaela Pal
+- Wyatt Anderson
