@@ -71,7 +71,7 @@
   </div>
 
   <script>
-    const apiKey = "YOUR_API_KEY_HERE";
+    const apiKey = "fd0ac2a4";
     let selectedRating = 0;
 
     // Turn stars into clickable rating buttons
@@ -150,4 +150,4 @@
   </script>
 
 </body>
-</html>
+</html> 
