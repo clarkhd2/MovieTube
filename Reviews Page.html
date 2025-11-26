@@ -29,11 +29,33 @@
     }
 
     .navbar {
-      background-color: var(--primary-purple);
+      background-color: var(--primary-dark) !important;
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
     }
 
-    .navbar .nav-link.active {
+    .navbar-brand {
+      color: var(--off-white) !important;
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--off-white) !important;
+    }
+
+    .navbar-nav .nav-link:hover {
       color: var(--accent-red) !important;
+    }
+
+    .navbar .form-control {
+      background-color: white;
+      border: 1px solid #ddd;
+      color: #333;
+    }
+
+    .navbar .form-control::placeholder {
+      color: #999;
     }
 
     .btn-primary {
@@ -90,9 +112,13 @@
     }
 
     input.form-control, textarea.form-control, select.form-select {
-      background-color: #2c2f41;
-      border: 1px solid #444;
-      color: var(--off-white);
+      background-color: white;
+      border: 1px solid #ddd;
+      color: #333;
+    }
+
+    input.form-control::placeholder, textarea.form-control::placeholder {
+      color: #999;
     }
 
     input.form-control:focus, textarea.form-control:focus, select.form-select:focus {
@@ -105,26 +131,40 @@
 
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="Homepage.html"><i class="bi bi-film"></i> MoviTube</a>
+      <a class="navbar-brand" href="homepage.html">
+        <i class="bi bi-film"></i> MoviTube
+      </a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="Genres Page.html">Genres</a></li>
-          <li class="nav-item"><a class="nav-link" href="Watchlist Page.html">Watchlist</a></li>
-          <li class="nav-item"><a class="nav-link active" href="Reviews Page.html">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link" href="Contact Page.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="About Us Page.html">About Us</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="Genres Page.html">Genres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Watchlist Page.html">Watchlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Reviews Page.html">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Contact Page.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About Us Page.html">About Us</a>
+          </li>
         </ul>
-
+        
         <form class="d-flex" action="Search Results Page.html" method="GET">
           <input class="form-control me-2" type="search" name="query" placeholder="Search Movies...">
-          <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+          <button class="btn btn-primary" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
         </form>
       </div>
     </div>
