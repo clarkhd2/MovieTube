@@ -1,8 +1,7 @@
 # MovieTube 🎬
 ## Movie database website
 
-Our elaborate website allows users to search for a diverse range of movies. MovieTube provides users with access to a wide selection of movies under one platform. The functionality of our website allows users to search through a variety of films with just a few clicks. When logging into the website, the user is first taken to the “Home” page, designed by Wyatt Anderson. Here, the user has the opportunity to navigate through different areas of our website through the Navbar. The user can then navigate to our “About Us” page, designed by Ariana Selzer. This page of our website provides users with details about the general idea of our website and its designers. The user can access our website’s “Genre” page, designed by Wyatt Anderson. This page offers users a look at different genres of movies our website provides and assists them with what kind of movie they are most drawn to. Then we have our “Search Results” page, which simply provides users with feedback based on the information we obtain from them. Hunter Clark designed this page. We then have our “Watchlist” page, which provides users with the opportunity to organize and select specific movies from our website that they would like to watch eventually in their own separate category. Wyatt Anderson designed this page. We then have our “Contact” page, which allows users access to contact us by entering their information. If they run into any issues or have any questions or suggestions, they can simply use this page to reach out to us. Mabel Alagbe designed this page. 
-
+Our comprehensive website allows users to search for a wide variety of movies. MovieTube provides a centralized platform where users can explore and access an extensive collection of films with just a few clicks. Upon logging in, users are directed to the “Home” page, designed by Wyatt Anderson, where they can navigate through the website using the Navbar. The “About Us” page, designed by Ariana Selzer, offers insights into the website’s purpose and introduces its creators. The “Genre” page, also designed by Wyatt Anderson, presents users with different movie genres, helping them discover films that match their interests. The “Search Results” page, created by Hunter Clark, displays relevant movies based on user queries. Our “Watchlist” page, designed by Wyatt Anderson, allows users to save and organize movies they wish to watch later. The “Contact” page, designed by Mabel Alagbe, provides a simple way for users to reach out with questions, suggestions, or issues. Finally, the “Reviews” page, created by Michaela, enables users to leave star ratings and written reviews for any movie available on the site. Open Movie Database (https://www.omdbapi.com/) was the API used to provide movie data and enrich the functionality of our platform.
 
 ## Site Layout
 - Homepage
@@ -11,9 +10,11 @@ Our elaborate website allows users to search for a diverse range of movies. Movi
 - Contact Us Page
 - Watchlist Page
 - Searchbar and Search Page
+- Review Page
 
 ## Group Members
 - Hunter Clark
 - Mabel Alagbe
 - Michaela Pal
 - Wyatt Anderson
+- Ariana Selzer
